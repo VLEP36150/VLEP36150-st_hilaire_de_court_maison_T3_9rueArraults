@@ -1,1 +1,267 @@
-INDEX
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maison T3 - Saint-Hilaire-de-Court - 9 rue des Arraults</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 12px 10px;
+            text-align: center;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .address {
+            color: #555;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .subtitle {
+            color: #3498db;
+            margin: 5px 0 0;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        #panorama {
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+            background-color: #000;
+        }
+
+        .bottom-nav {
+            display: flex;
+            gap: 5px;
+            padding: 10px 8px;
+            background: #222;
+            justify-content: center;
+            flex-wrap: wrap;
+            z-index: 20;
+            flex-shrink: 0;
+        }
+
+        .nav-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: background-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .nav-btn.active {
+            background-color: #1d5f8d;
+            outline: 2px solid white;
+        }
+
+        .footer {
+            background: #222;
+            color: #ccc;
+            text-align: center;
+            font-size: 0.75em;
+            padding: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.05em;
+            }
+
+            .address {
+                font-size: 0.85em;
+            }
+
+            .nav-btn {
+                font-size: 0.8em;
+                padding: 10px 8px;
+            }
+
+            .bottom-nav {
+                gap: 5px;
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Maison T3 – Saint-Hilaire-de-Court</h1>
+
+        <p class="address">
+            9 rue des Arraults – 18100 Saint-Hilaire-de-Court
+        </p>
+
+        <p class="subtitle" id="current-title">
+            Visite virtuelle 360° – Séjour
+        </p>
+    </div>
+
+    <div id="panorama"></div>
+
+    <div class="bottom-nav">
+
+        <button class="nav-btn active" onclick="changerScene('sejour', 'Séjour', this)">
+            🛋️ Séjour
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('sejour2', 'Séjour – seconde vue', this)">
+            🛋️ Séjour 2
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('cuisine', 'Cuisine', this)">
+            🍳 Cuisine
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('chambre1', 'Chambre 1', this)">
+            🛏️ Chambre 1
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('chambre2', 'Chambre 2', this)">
+            🛏️ Chambre 2
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('sdb', 'Salle de bains', this)">
+            🚿 Salle de bains
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('wc', 'WC', this)">
+            🚽 WC
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('wc2', 'WC – seconde vue', this)">
+            🚽 WC 2
+        </button>
+
+        <button class="nav-btn" onclick="changerScene('jardin', 'Jardin', this)">
+            🌿 Jardin
+        </button>
+
+    </div>
+
+    <div class="footer">
+        Visite virtuelle panoramique 360°
+    </div>
+
+    <script>
+
+        const viewer = pannellum.viewer('panorama', {
+
+            "default": {
+                "firstScene": "sejour",
+                "autoLoad": true,
+                "compass": true,
+                "hfov": 100,
+                "showControls": true,
+                "sceneFadeDuration": 500
+            },
+
+            "scenes": {
+
+                "sejour": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_sejour.JPG"
+                },
+
+                "sejour2": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_sejour_2.JPG"
+                },
+
+                "cuisine": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_cuisine.JPG"
+                },
+
+                "chambre1": {
+                    "type": "equirectangular",
+                    "panorama": "9_st_hilaire_chbre1.JPG"
+                },
+
+                "chambre2": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_chbre2.JPG"
+                },
+
+                "sdb": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_sdb.JPG"
+                },
+
+                "wc": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_wc.JPG"
+                },
+
+                "wc2": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_wcc2.JPG"
+                },
+
+                "jardin": {
+                    "type": "equirectangular",
+                    "panorama": "9st_hilaire_jardin.JPG"
+                }
+
+            }
+
+        });
+
+        function changerScene(sceneId, titrePiece, bouton) {
+
+            document.getElementById('current-title').innerText =
+                "Visite virtuelle 360° – " + titrePiece;
+
+            viewer.loadScene(sceneId);
+
+            document.querySelectorAll('.nav-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+
+            bouton.classList.add('active');
+        }
+
+    </script>
+
+</body>
+</html>INDEX
